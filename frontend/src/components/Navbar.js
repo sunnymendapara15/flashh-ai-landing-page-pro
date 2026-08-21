@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 const LINKS = [
   { href: '#features', label: 'Features' },
@@ -39,20 +40,22 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="nav-cta desktop">
-          <a href="#cta" className="btn btn-primary">Start free</a>
+        <div className="nav-actions">
+          <ThemeToggle />
+          <div className="nav-cta desktop">
+            <a href="#cta" className="btn btn-primary">Start free</a>
+          </div>
+          <button
+            type="button"
+            className={`nav-toggle ${open ? 'open' : ''}`}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span></span><span></span><span></span>
+          </button>
         </div>
-
-        <button
-          type="button"
-          className={`nav-toggle ${open ? 'open' : ''}`}
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span></span><span></span><span></span>
-        </button>
       </div>
 
       {open && (

@@ -8,6 +8,7 @@ A premium, conversion-focused landing page for **Flashh AI**: describe your idea
 - Custom CSS design system (no UI framework)
 - Intersection Observer scroll reveals (no heavy animation libraries)
 - Google Fonts — Inter
+- Dark / light theme with system detection and persisted preference
 
 ## Getting started
 
@@ -37,9 +38,12 @@ frontend/
     ├── index.js
     ├── App.js
     ├── index.css
-    ├── hooks/useReveal.js
+    ├── hooks/
+    │   ├── useReveal.js
+    │   └── useTheme.js
     └── components/
         ├── Navbar.js
+        ├── ThemeToggle.js
         ├── Hero.js
         ├── SocialProof.js
         ├── Features.js
@@ -54,7 +58,7 @@ frontend/
 
 ## Features
 
-- Sticky glassmorphism navbar with mobile menu
+- Sticky glassmorphism navbar with mobile menu and an accessible dark/light theme toggle
 - Hero with ambient animated gradients and a live chat-to-workflow mock
 - Social proof logo strip
 - Feature grid with staggered reveals and hover glow
