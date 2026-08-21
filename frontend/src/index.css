@@ -19,6 +19,9 @@
   --radius: 18px;
   --radius-lg: 26px;
   --shadow-glow: 0 20px 60px -20px rgba(99, 102, 241, 0.55);
+  --nav-bg: rgba(8, 8, 15, 0.72);
+  --nav-mobile-bg: rgba(8, 8, 15, 0.96);
+  --toggle-bg: rgba(255, 255, 255, 0.06);
   --maxw: 1180px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -133,12 +136,68 @@ ul { list-style: none; }
 .animate-float { animation: float-slow 12s ease-in-out infinite; }
 .animate-float-2 { animation: float-slower 16s ease-in-out infinite; }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: grid;
+  place-items: center;
+  color: var(--text-soft);
+  transition: color 0.25s, background 0.25s, border-color 0.25s, transform 0.25s var(--ease);
+}
+
+.theme-toggle:hover {
+  color: var(--text);
+  background: var(--surface-strong);
+  border-color: var(--border-strong);
+}
+
+.theme-toggle:active {
+  transform: scale(0.92);
+}
+
+.theme-toggle .icon {
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  transition: transform 0.45s var(--ease), opacity 0.3s ease;
+}
+
+.theme-toggle .icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.theme-toggle .icon-moon {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.5);
+}
+
+.theme-toggle.light .icon-sun {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.5);
+}
+
+.theme-toggle.light .icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
 .nav {
   position: fixed; inset: 0 0 auto 0; z-index: 100;
   transition: background 0.3s var(--ease), border-color 0.3s var(--ease), backdrop-filter 0.3s var(--ease);
   border-bottom: 1px solid transparent;
 }
-.nav.scrolled { background: rgba(8, 8, 15, 0.72); border-bottom-color: var(--border); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+.nav.scrolled { background: var(--nav-bg); border-bottom-color: var(--border); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 72px; }
 .logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.22rem; letter-spacing: -0.02em; }
 .logo-mark {
@@ -306,7 +365,7 @@ ul { list-style: none; }
 @media (max-width: 720px) {
   .nav-links, .nav-cta.desktop { display: none; }
   .nav-toggle { display: grid; }
-  .mobile-menu { display: flex; flex-direction: column; gap: 6px; padding: 12px 24px 22px; background: rgba(8, 8, 15, 0.96); border-bottom: 1px solid var(--border); backdrop-filter: blur(18px); }
+  .mobile-menu { display: flex; flex-direction: column; gap: 6px; padding: 12px 24px 22px; background: var(--nav-mobile-bg); border-bottom: 1px solid var(--border); backdrop-filter: blur(18px); }
   .mobile-menu a { padding: 13px 16px; border-radius: 12px; color: var(--text-soft); font-size: 1rem; font-weight: 500; }
   .mobile-menu a:hover { background: var(--surface); color: var(--text); }
   .mobile-menu .btn { margin-top: 10px; }
@@ -319,4 +378,48 @@ ul { list-style: none; }
   .cta-card { padding: 56px 24px; }
   .cta-email { flex-direction: column; }
   .logo-strip { gap: 18px 32px; }
+}
+
+
+/* ---------- Light theme ---------- */
+:root[data-theme='light'] {
+  --bg: #f7f8fb;
+  --bg-soft: #ffffff;
+  --surface: rgba(15, 23, 42, 0.035);
+  --surface-strong: rgba(15, 23, 42, 0.06);
+  --border: rgba(15, 23, 42, 0.1);
+  --border-strong: rgba(15, 23, 42, 0.2);
+  --text: #0b1020;
+  --text-soft: #3c4456;
+  --text-muted: #6b7280;
+  --nav-bg: rgba(247, 248, 251, 0.8);
+  --nav-mobile-bg: rgba(247, 248, 251, 0.98);
+  --shadow-glow: 0 20px 60px -24px rgba(99, 102, 241, 0.45);
+}
+
+:root[data-theme='light'] .blob {
+  opacity: 0.32;
+}
+
+:root[data-theme='light'] .btn-primary {
+  box-shadow: 0 12px 30px -12px rgba(99, 102, 241, 0.6);
+}
+
+:root[data-theme='light'] .showcase-pane {
+  background: rgba(15, 23, 42, 0.02);
+}
+
+:root[data-theme='light'] .cta-email input {
+  background: rgba(15, 23, 42, 0.04);
+}
+
+:root[data-theme='light'] .hero-glow {
+  filter: blur(60px);
+  opacity: 0.8;
+}
+
+@media (max-width: 720px) {
+  .nav-cta.desktop {
+    display: none;
+  }
 }
